@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ url_for('static', filename='assets/images/icon-bawang-fiks.png') }}"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- CSS FILES -->
+    <link
+      href="{{ url_for('static' , filename='assets/css/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+
+    <link
+      href="{{ url_for('static' , filename='assets/css/bootstrap-icons.css') }}"
+      rel="stylesheet"
+    />
+
+    <link
+      href="{{ url_for('static' , filename='assets/css/templatemo-kind-heart-charity.css') }}"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static' , filename='assets/css/style.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static' , filename='assets-login/fonts/material-icon/css/material-design-iconic-font.min.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static' , filename='assets-login/css/style.css') }}"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='admin_ui/public/fontawesome/css/all.css') }}"
+    />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .wraper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
+      }
+
+      footer {
+        background-color: #f8f9fa;
+        text-align: center;
+        color: #333;
+        font-size: 14px;
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333; /* Ganti dengan warna navbar */
+        color: white;
+        padding: 10px 20px;
+        z-index: 1000; /* Agar navbar tetap di atas elemen lain */
+      }
+    </style>
+  </head>
+
+  <body id="section_1">
+    <div class="wraper">
+      <nav class="navbar navbar-expand-lg bg-light shadow-lg">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <img
+              src="{{ url_for('static' , filename='assets/images/icon-bawang-fiks.png') }}"
+              class="logo img-fluid"
+              alt="Kind Heart Charity"
+            />
+            <span>
+              SAVON
+              <small>Mencegah lebih baik dari mengobati</small>
+            </span>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto {% if hide %}d-none{% endif %}">
+              <li class="nav-item">
+                <a class="nav-link click-scroll" href="/">Home</a>
+              </li>
+              {% if session['name']%}
+
+              <li class="nav-item">
+                <a class="nav-link click-scroll" href="#section_3">Petunjuk</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link click-scroll" href="#section_6">Fitur</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('history') }}">Riwayat</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('arvid') }}"
+                  >Artikel & Video</a
+                >
+              </li>
+
+              <li class="nav-item-1 dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="{% if g.user and g.user.get('profile_picture') %}{{ url_for('static', filename='profile_pictures/' + g.user['profile_picture']) }}{% else %}{{ url_for('static', filename='profile_pictures/foto-profil.png') }}{% endif %}"
+                    alt="Foto Profil"
+                    class="rounded-circle navbar-profile-img"
+                  />
+                </a>
+                <ul
+                  class="dropdown-menu dropdown-menu-end"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <li>
+                    <a class="dropdown-item" href="{{ url_for('profile') }}"
+                      >Profil</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="{{ url_for('edit_profile') }}"
+                      >Edit Profil</a
+                    >
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="/logout">Keluar</a></li>
+                </ul>
+              </li>
+
+              {%else %}
+
+              <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+              </li>
+
+              <li class="nav-item ms-3">
+                <a
+                  class="nav-link custom-btn custom-border-btn btn"
+                  href="/register"
+                  >Register</a
+                >
+              </li>
+              {%endif%}
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <main>{%block content %}{% endblock %}</main>
+
+      <footer>
+        <div class="site-footer-bottom">
+          <div class="container">
+            <div class="row">
+              <!-- <div class="col-lg-6 col-md-7 col-12"> -->
+              <div class="col-12">
+                <p class="copyright-text text-center mb-0">
+                  Copyright © 2024 <a href="#">|| Dicky Yahya </a>|| 23092009
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- JAVASCRIPT FILES -->
+    <script src="{{ url_for('static' , filename='assets/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static' , filename='assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static' , filename='assets/js/jquery.sticky.js') }}"></script>
+    <script src="{{ url_for('static' , filename='assets/js/click-scroll.js') }}"></script>
+    <script src="{{ url_for('static' , filename='assets/js/counter.js') }}"></script>
+    <script src="{{ url_for('static' , filename='assets/js/custom.js') }}"></script>
+    <!-- script kurva -->
+    <script src="{{ url_for('static' , filename='assets/js/chart.js') }}"></script>
+
+    <script src="{{ url_for('static' , filename='assets-deskripsi/public/bootstrap3/js/code.jquery.com_jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ url_for('static' , filename='assets-deskripsi/public/bootstrap3/js/gsgd.co.uk_sandbox_jquery_easing_jquery.easing.1.3.js') }}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('static' , filename='assets-deskripsi/public/bootstrap3/js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ url_for('static' , filename='assets-deskripsi/public/bootstrap3/js/script.js') }}"></script>
+    <!-- script captcha -->
+    <script src="{{ url_for('static' , filename='assets/js/captcha.js') }}"></script>
+
+    <script>
+      // Ambil semua link dengan class "click-scroll"
+    </script>
+  </body>
+</html>

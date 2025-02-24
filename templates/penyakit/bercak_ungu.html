@@ -1,0 +1,242 @@
+{% extends 'layout.html'%}{%block title %} Bercak Ungu {% endblock %}{%block
+content%}
+<style>
+  /* Sembunyikan navigasi */
+  .nav-item {
+    display: none;
+  }
+  /* Styling untuk container */
+  .container-penyakit {
+    margin: 30px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+  }
+
+  /* Judul */
+  .container-penyakit h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #4caf50;
+    margin-bottom: 20px;
+  }
+
+  /* Deskripsi paragraf */
+  .container-penyakit p.description {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+  }
+
+  /* Subjudul */
+  .container-penyakit h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  /* Daftar item */
+  .container-penyakit ul {
+    margin-top: 20px;
+    padding-left: 20px;
+  }
+
+  .container-penyakit ul li {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    position: relative;
+  }
+
+  /* Bullet point list custom */
+  .container-penyakit ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-size: 1.3em;
+    top: -3px;
+  }
+
+  /* Responsive design untuk mobile */
+  @media (max-width: 600px) {
+    .container-penyakit {
+      padding: 15px;
+    }
+
+    .container-penyakit h1 {
+      font-size: 2em;
+    }
+
+    .container-penyakit p.description {
+      font-size: 1em;
+    }
+
+    .container-penyakit h3 {
+      font-size: 1.5em;
+    }
+
+    .container-penyakit ul li {
+      font-size: 1em;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+
+  .btn-primary {
+    text-align: center;
+    display: block;
+  }
+</style>
+<br /><br />
+<div class="container-penyakit">
+  <img
+    src="{{ url_for('static' , filename='assets/images/bawang/purple-blotch.jpg') }}"
+    alt="Gambar"
+    width="400px"
+    style="display: block; margin: 0 auto; border-radius: 10px"
+  />
+  <br /><br />
+  <h1>Gejala Bercak ungu</h1>
+  <p class="description">
+    Gejala terutama tergantung pada kelembaban relatif (RH) lingkungan sekitar.
+    Bintik-bintik kecil, tidak teratur, cekung dan keputihan pertama kali muncul
+    pada daun dan tangkai bunga yang lebih tua. Jika RH tetap rendah, tidak ada
+    perkembangan lebih lanjut yang terlihat. Namun, pada RH tinggi, lesi-lesi
+    ini berkembang menjadi bercak-bercak elips berwarna cokelat atau ungu,
+    dengan zona konsentris terang dan gelap di daerah pusatnya. Seiring waktu,
+    lesi-lesi ini dapat menyebar hingga beberapa sentimeter dan memiliki batos !
+    kekuningan. Lesi dapat menyatu dan mengelilingi daun atau tangkai bunga,
+    menyebabkan layu dan kematian. Umbi juga bisa diserang, terutama di leher,
+    jika terluka saat panen. Gejala selama penyimpanan muncul sebagai busuk
+    seperti spons berwarna kuning gelap hingga kemerahan di kulit luar atau
+    dalam umbi. Bawang merah, bawang putih, dan bawang perai bisa terkena
+    penyakit ini.
+  </p>
+  <br />
+
+  <h3>Rekomendasi</h3>
+  <h3>Pengendalian hayati</h3>
+  <p>
+    Sampai saat ini, tidak ada pengendalian hayati yang efektif untuk penyakit
+    ini. Jamur antagonis Cladosporium herbarum telah digunakan untuk menghambat
+    patogen Alternaria porri pada kontak in vivo, mengurangi infeksi sebesar
+    66,6%. Jamur lain, misalnya Penicillium sp. (54%), tidak terlalu efektif.
+    Campuran beberapa jamur antagonis dapat menyebabkan pengurangan hingga
+    79,1%. Namun, sejauh ini belum ada produk komersial yang dikembangkan atas
+    temuan ini. Ekstrak air dari Azadirachta indica (Mimba) dan Datura
+    stramonium (kecubung pendek) dapat digunakan untuk pengendalian hayati
+    penyakit bercak ungu.
+  </p>
+
+  <h3>Pengendalian kimiawi</h3>
+  <p>
+    Selalu pertimbangkan pendekatan terpadu berupa tindakan pencegahan bersama
+    dengan perlakuan hayati jika tersedia. Sebagian besar tanaman bawang
+    komersial harus dilindungi dari penyakit bercak ungu dengan penerapan
+    fungisida pelindung berulang. Solusi berdasarkan fungisida boscalid,
+    chlorothalonil, fenamidone dan mancozeb (semua @ 0,20 - 0,25%) dapat
+    disemprotkan secara preventif pada interval dua minggu dimulai dari satu
+    bulan setelah pindah tanam. Fungisida tembaga terdaftar untuk mengendalikan
+    bercak ungu, tetapi tidak sangat efektif. Selingi fungisida dari keluarga
+    yang berbeda untuk menghindari perkembangan kekebalan.
+  </p>
+
+  <h3>Apa penyebabnya?</h3>
+  <p>
+    Bercak ungu disebabkan oleh jamur Alternaria porri. Jamur ini melewati musim
+    dingin di sisa-sisa tanaman yang terinfeksi atau di dekat permukaan tanah.
+    Jamur ini melanjutkan siklus hidupnya dengan produksi spora saat kondisi
+    hangat dan basah terjadi di musim semi. Angin, air irigasi, atau percikan
+    hujan menyebarkan spora ke tanaman dan lahan yang sehat. Penyakit ini
+    terjadi dalam kondisi yang menguntungkan, yaitu suhu 21-30°C dan kelembaban
+    relatif 80-90%. Kejadian penyakit dan intensitas gejala juga tergantung pada
+    musim dan kondisi lahan. Ketika penyakit ini terjadi bersamaan dengan hawar
+    Stemphylium, kerusakannya bisa serius. Kekebalan terhadap bercak ungu
+    terjadi terutama karena ketebalan kutikula. Kekebalan ini berkurang akibat
+    luka tanaman selama kerja Iahan atau setelah badai pasir, misalnya.
+  </p>
+
+  <h3>Tindakan Pencegahan</h3>
+  <ul>
+    <li>Pastikan untuk menggunakan benih dari sumber bersertifikat.</li>
+    <li>Jika memungkinkan, tabur dan pindatanamkan tanaman di awal musim.</li>
+    <li>Pilih varietas tahan jika tersedia.</li>
+    <li>
+      Bajak lahan 2-3 kali antara musim untuk memaparkan jamur terhadap radiasi
+      matahari.
+    </li>
+    <li>Tingkatkan jarak antar tanaman saat tanam.</li>
+    <li>
+      Pupuk sebanyak mungkin dengan nitrogen dan fosfor untuk mendapat tanaman
+      yang kuat dan sehat.
+    </li>
+    <li>Kontrol gulma di sekitar lahan.</li>
+    <li>Singkirkan sisa-sisa tanaman dan tanaman liar setelah panen.</li>
+    <li>Berhati-hatilah agar tidak melukai tanaman selama kerja lahan.</li>
+    <li>
+      Rotasi tanaman selama 2-3 tahun mencegah populasi patogen berkembang
+      hingga tingkat tinggi.
+    </li>
+    <li>
+      Simpan umbi pada suhu 1-3°C dan kelembaban 65-70% dalam pendingin yang
+      diangin-anginkan.
+    </li>
+    <li>
+      Kontrol thrips bawang, karena tanaman yang dilemahkan olehnya lebih rentan
+      terhadap penyakit.
+    </li>
+  </ul>
+  <h3>Rekomendasi Obat</h3>
+  <p>
+    Beberapa obat yang dapat digunakan untuk pengendalian penyakit karat pada
+    bawang merah antara lain:
+  </p>
+  <ul>
+    <li>
+      <strong>Produk bisa dibeli di :</strong><br />
+      <a
+        href="https://shopee.co.id/Mahakam-Dolphin-55-WP-100-Gr-Pestisida-Fungisida-Pengendali-Bercak-Ungu-tanaman-Bawang-Merah-i.348148492.9368253656?sp_atk=01521e8b-d371-496c-a98c-5f3e9dfd5af9&xptdk=01521e8b-d371-496c-a98c-5f3e9dfd5af9
+        "
+        target="_blank"
+      >
+        <img
+          src="{{ url_for('static', filename='logo-apk/shopee.png') }}"
+          alt="Shopee"
+          style="width: 30px; height: 30px"
+        />
+      </a>
+      &nbsp;&nbsp;
+      <!-- <a
+        href="https://www.tokopedia.com/search?st=product&q=Chlorothalonil"
+        target="_blank"
+      >
+        <img
+          src="{{ url_for('static', filename='logo-apk/tokped.png') }}"
+          alt="Tokopedia"
+          style="width: 30px; height: 30px"
+        />
+      </a> -->
+    </li>
+  </ul>
+  <p>
+    Selalu ikuti petunjuk aplikasi dari masing-masing produk dan pertimbangkan
+    penggunaan pestisida dengan bijaksana untuk menjaga keberlanjutan ekosistem
+    pertanian Anda.
+  </p>
+  <a
+    href="{{ url_for('history') }}"
+    class="btn btn-primary"
+    style="text-align: center"
+    >Kembali Riwayat Deteksi</a
+  >
+</div>
+{% endblock %}

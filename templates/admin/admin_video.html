@@ -1,0 +1,193 @@
+{% extends 'admin/layout.html'%} {%block title %} Manage Video {% endblock %}
+{%block content%}
+<style>
+  .table {
+    width: 100%; /* Tabel memenuhi seluruh lebar container */
+    table-layout: fixed; /* Pastikan setiap kolom memiliki lebar tetap */
+    border-collapse: collapse; /* Menggabungkan garis border tabel agar rapi */
+  }
+
+  .table th,
+  .table td {
+    white-space: normal; /* Izinkan teks memanjang ke baris berikutnya */
+    text-align: center; /* Teks di tengah secara horizontal */
+    vertical-align: middle; /* Teks di tengah secara vertikal */
+    border: 1px solid #ddd; /* Menambahkan border pada setiap sel */
+    box-sizing: border-box; /* Pastikan padding dan border dihitung dalam lebar kolom */
+  }
+
+  .table th:first-child,
+  .table td:first-child {
+    width: 6%; /* Lebar tetap untuk kolom "No." */
+  }
+
+  .table th:nth-child(2),
+  .table td:nth-child(2) {
+    width: 18%; /* Lebar untuk kolom "Judul" */
+  }
+
+  .table th:nth-child(3),
+  .table td:nth-child(3) {
+    width: 30%; /* Lebar untuk kolom "Deskripsi" */
+  }
+
+  .table th:nth-child(4),
+  .table td:nth-child(4) {
+    width: 25%; /* Lebar untuk kolom "Link" */
+  }
+
+  .table th:nth-child(5),
+  .table td:nth-child(5) {
+    width: 10%; /* Lebar untuk kolom "Gambar" */
+  }
+
+  .pagination-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .pagination {
+    display: inline-flex;
+    list-style: none;
+    padding: 0;
+  }
+
+  .pagination .page-item {
+    margin: 0 5px;
+  }
+
+  .pagination .page-link {
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #007bff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+
+  .pagination .page-link:hover {
+    background-color: #f1f1f1;
+  }
+
+  .pagination .active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+</style>
+
+<!-- Main content -->
+<div class="main-panel2">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="row">
+          <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+            <a href="{{ url_for('admin_create_video') }}">
+              <button type="button" class="btn btn-primary btn-md">
+                Tambah Video
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- pesan flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="alert alert-{{ category }}" role="alert">{{message}}</div>
+    {% endfor %} {% endif %} {% endwith %}
+    <!-- end flash -->
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Daftar video</h4>
+          <div class="table-responsive pt-3">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Judul</th>
+                  <th>Deskripsi</th>
+                  <th>Link</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for video in videos %}
+                <tr>
+                  <td>{{ start_number + loop.index0 }}</td>
+                  <td>{{ video.title }}</td>
+                  <td>{{ video.description }}</td>
+                  <td>{{ video.video }}</td>
+                  <td>
+                    <!-- Edit video -->
+                    <a
+                      href="{{ url_for('admin_edit_video', id=video.id) }}"
+                      class="button"
+                      style="text-decoration: none; margin-right: 20px"
+                    >
+                      <i
+                        class="fa-solid fa-pen-to-square"
+                        style="font-size: 16px; vertical-align: middle"
+                      ></i>
+                    </a>
+
+                    <!-- Hapus video -->
+                    <form
+                      class="delete-form"
+                      action="{{ url_for('delete_video', id=video.id) }}"
+                      method="POST"
+                      style="display: inline"
+                    >
+                      <button
+                        type="submit"
+                        class="button"
+                        onclick="return confirm('Apakah Anda yakin ingin menghapusnya?');"
+                      >
+                        <i class="fa-solid fa-trash"></i>
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination-container">
+      <ul class="pagination">
+        {% if page > 1 %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page - 1 }}">Previous</a>
+        </li>
+        {% endif %} {% for p in range(1, total_pages + 1) %}
+        <li class="page-item {% if p == page %}active{% endif %}">
+          <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endfor %} {% if page < total_pages %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page + 1 }}">Next</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="d-sm-flex justify-content-center justify-content-sm-between">
+        <span
+          class="text-muted text-center text-sm-left d-block d-sm-inline-block"
+          >Copyright © 2025.
+          <a href="https://www.bootstrapdash.com/" target="_blank"
+            >Dicky Yahya</a
+          >
+          23092009</span
+        >
+      </div>
+    </footer>
+  </div>
+</div>
+{% endblock %}

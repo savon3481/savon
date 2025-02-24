@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Tambah Artikel</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='admin_ui/public/aset/vendors/feather/feather.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='admin_ui/public/aset/vendors/ti-icons/css/themify-icons.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='admin_ui/public/aset/vendors/css/vendor.bundle.base.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='admin_ui/public/aset/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='admin_ui/public/aset/css/vertical-layout-light/style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='admin_ui/public/fontawesome/css/all.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='admin_ui/public/mystyle/style.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="justify-content-center">
+      <div class="content-wrapper">
+        <div class="row">
+          <div class="col-sm-7 mx-lg-auto">
+            <div class="card">
+              <!-- pesan flash -->
+              {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %} {% for category, message in messages %}
+              <div class="alert alert-{{ category }}" role="alert">
+                {{message}}
+              </div>
+              {% endfor %} {% endif %} {% endwith %}
+              <!-- end flash -->
+              <div class="card-body">
+                <h4 class="card-title">Form Tambah Artikel</h4>
+                <p class="card-description">
+                  Silahkan diisi form berikut ini :
+                </p>
+                <form
+                  action="{{ url_for('admin_create_artikel') }}"
+                  method="POST"
+                  enctype="multipart/form-data"
+                >
+                  <div class="form-group">
+                    <label for="title">Judul Artikel</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="title"
+                      name="title"
+                      placeholder="Masukkan judul artikel"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="url">Url Artikel</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="url"
+                      name="url"
+                      placeholder="Masukkan Url artikel"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="description">Deskripsi Artikel</label>
+                    <textarea
+                      class="form-control"
+                      id="description"
+                      name="description"
+                      rows="4"
+                      placeholder="Masukkan deskripsi artikel"
+                      required
+                    ></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="gambar">Gambar Artikel</label>
+                    <input
+                      type="file"
+                      class="form-control-file"
+                      id="gambar"
+                      name="gambar"
+                      accept=".jpg,.jpeg,.png"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    Simpan Artikel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer text-center">
+      <div class="justify-content-center">
+        <span class="text-center"
+          >Copyright © 2023 || Dicky Yahya - 23092009</span
+        >
+      </div>
+    </footer>
+
+    <!-- plugins:js -->
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/vendors/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/vendors/datatables.net/jquery.dataTables.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/js/off-canvas.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/js/template.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/js/settings.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/js/todolist.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_ui/public/aset/js/Chart.roundedBarCharts.js') }}"></script>
+  </body>
+</html>

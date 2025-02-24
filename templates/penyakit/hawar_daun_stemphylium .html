@@ -1,0 +1,223 @@
+{% extends 'layout.html'%}{%block title %} Hawar Daun Stemphylium {% endblock
+%}{%block content%}
+<style>
+  /* Sembunyikan navigasi */
+  .nav-item {
+    display: none;
+  }
+  /* Styling untuk container */
+  .container-penyakit {
+    margin: 30px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+  }
+
+  /* Judul */
+  .container-penyakit h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #4caf50;
+    margin-bottom: 20px;
+  }
+
+  /* Deskripsi paragraf */
+  .container-penyakit p.description {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+  }
+
+  /* Subjudul */
+  .container-penyakit h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  /* Daftar item */
+  .container-penyakit ul {
+    margin-top: 20px;
+    padding-left: 20px;
+  }
+
+  .container-penyakit ul li {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    position: relative;
+  }
+
+  /* Bullet point list custom */
+  .container-penyakit ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-size: 1.3em;
+    top: -3px;
+  }
+
+  /* Responsive design untuk mobile */
+  @media (max-width: 600px) {
+    .container-penyakit {
+      padding: 15px;
+    }
+
+    .container-penyakit h1 {
+      font-size: 2em;
+    }
+
+    .container-penyakit p.description {
+      font-size: 1em;
+    }
+
+    .container-penyakit h3 {
+      font-size: 1.5em;
+    }
+
+    .container-penyakit ul li {
+      font-size: 1em;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+
+  .btn-primary {
+    text-align: center;
+    display: block;
+  }
+</style>
+<br /><br />
+<div class="container-penyakit">
+  <img
+    src="{{ url_for('static' , filename='assets/images/bawang/stemphylium.jpg') }}"
+    alt="Gambar"
+    width="400px"
+    style="display: block; margin: 0 auto; border-radius: 10px"
+  />
+  <br /><br />
+  <h1>Gejala Hawar Daun Stemphylium</h1>
+  <p class="description">
+    Gejala awalnya termasuk bintik-bintik kecil, basah, berwarna putih hingga
+    kuning muda pada daun. Biasanya, lesi ini ditemukan dalam jumlah yang lebih
+    banyak di sisi daun yang menghadap angin. Seiring waktu, lesi-lesi kecil ini
+    tumbuh di sepanjang helai daun dan menyatu menjadi bercak-bercak cokelat
+    yang cekung, berbentuk oval atau memanjang, dengan pusat berwarna cokelat
+    muda hingga cokelat. Zona konsentris juga dapat berkembang di pusatnya. Pada
+    tahap lanjut, terbentuk area nekrotik besar, yang dapat melilit daun atau
+    batang benih, menyebabkan kerusakan jaringan yang luas
+  </p>
+  <br />
+
+  <h3>Rekomendasi</h3>
+  <h3>Pengendalian hayati</h3>
+  <p>
+    Ekstrak air dari Azadirachta indica (Mimba) dan Datura stramonium (kecubung
+    pendek) dapat digunakan untuk pengendalian hayati penyakit hawar daun
+    Stemphylium dengan kemanjuran yang mirip dengan fungisida konvensional.
+    Dalam kondisi rumah kaca, penerapan produk preventif atau kuratif
+    berdasarkan Trichoderma harzianum dan Stachybotrys chartarum menghasilkan
+    pengurangan insiden dan keparahan penyakit (sekitar 70% dalam kedua kasus).
+  </p>
+
+  <h3>Pengendalian kimiawi</h3>
+  <p>
+    Selalu pertimbangkan pendekatan terpadu berupa tindakan pencegahan bersama
+    dengan perlakuan hayati jika tersedia. Larutan bahan aktif azoxystrobin +
+    difenoconazole, boscalid + pyraclostrobin, chlorothalonil, iprodione,
+    mancozeb dan prochloraz sangat efektif dalam mengurangi pertumbuhan S.
+    vesicarium. Perlakuan harus dilakukan ketika kondisi tidak menguntungkan
+    untuk jamur (cuaca dingin dan kering). Secara umum, efektivitas fungisida
+    ditingkatkan dengan pergantian produk.
+  </p>
+
+  <h3>Apa penyebabnya?</h3>
+  <p>
+    Penyakit hawar daun stemphylium disebabkan oleh jamur Pleospora alli, yang
+    sebelumnya dikenal sebagai Stemphylium vesicarium, yang memberi namna
+    penyakitnya. Jamur ini bertahan di sisa-sisa tanaman yang terinfeksi dan
+    melanjutkan pertumbuhan selamna kondisi cuaca yang menguntungkan di musim
+    semi. Jamur ini kemudian menghasilkan spora yang disebarkan ke tanaman
+    terdekat oleh angin. Jamur ini biasanya menyerang jaringan bawang yang mati
+    dan sekarat, seperti ujung daun, lesi yang disebabkan oleh penyakit
+    sebelumnya, atau jaringan yang terluka (misalnya oleh serangga atau hujan
+    es). Kondisi basah dan hangat dalam jangka waktu lama mendorong perkembangan
+    penyakit. Dengan demikian daun yang sehat juga dapat diserang jika cuaca
+    hangat (18 - 25° C) dan permukaan daun basah selama lebih dari 24 jam.
+    Infeksi biasanya tetap terbatas pada daun dan tidak mempengaruhi umbi. Daun
+    yang lebih tua lebih rentan daripada daun muda..
+  </p>
+
+  <h3>Tindakan Pencegahan</h3>
+  <ul>
+    <li>Pilih varietas tahan (beberapa tersedia).</li>
+    <li>
+      Tabur baris tanaman searah angin untuk menghindari basahnya daun dalam
+      waktu lama.
+    </li>
+    <li>Kurangi kepadatan tanaman agar memiliki aliran udara yang baik.</li>
+    <li>Pastikan drainase lahan yang memadai sebelum tanam.</li>
+    <li>
+      Hindari penerapan nitrogen yang berlebihan yang dapat meningkatkan
+      keparahan penyakit.
+    </li>
+    <li>
+      Buang dan kubur sisa-sisa tanaman dan musnahkan melalui penanaman setelah
+      panen.
+    </li>
+    <li>Lakukan rotasi tanaman untuk jangka waktu 3-4 tahun.</li>
+  </ul>
+  <h3>Rekomendasi Obat</h3>
+  <p>
+    Beberapa obat yang dapat digunakan untuk pengendalian penyakit karat pada
+    bawang merah antara lain:
+  </p>
+  <ul>
+    <li>
+      <strong>Produk bisa dibeli di :</strong><br />
+      <a
+        href="https://shopee.co.id/Sagri-Nil-77WP-500gr-Fungisida-Kontak-Klorotalonil-77-Untuk-Penyakit-Bercak-Hawar-Daun-Satya-Agro-Indonesia-(SAI)-Daconil-i.30371938.23343511518?sp_atk=a7562973-4f52-4eda-8260-67abcab44080&xptdk=a7562973-4f52-4eda-8260-67abcab44080
+          "
+        target="_blank"
+      >
+        <img
+          src="{{ url_for('static', filename='logo-apk/shopee.png') }}"
+          alt="Shopee"
+          style="width: 30px; height: 30px"
+        />
+      </a>
+      <!-- &nbsp;&nbsp; -->
+      <!-- <a
+          href="https://www.tokopedia.com/search?st=product&q=Chlorothalonil"
+          target="_blank"
+        >
+          <img
+            src="{{ url_for('static', filename='logo-apk/tokped.png') }}"
+            alt="Tokopedia"
+            style="width: 30px; height: 30px"
+          />
+        </a> -->
+    </li>
+  </ul>
+  <p>
+    Selalu ikuti petunjuk aplikasi dari masing-masing produk dan pertimbangkan
+    penggunaan pestisida dengan bijaksana untuk menjaga keberlanjutan ekosistem
+    pertanian Anda.
+  </p>
+  <a
+    href="{{ url_for('history') }}"
+    class="btn btn-primary"
+    style="text-align: center"
+    >Kembali Riwayat Deteksi</a
+  >
+</div>
+{% endblock %}

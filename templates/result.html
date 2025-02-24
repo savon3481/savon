@@ -1,0 +1,144 @@
+{% extends 'layout.html' %} {% block title %}Hasil Deteksi{% endblock %} {%
+block content %}
+
+<style>
+  /* Sembunyikan navigasi */
+  .nav-item {
+    display: none;
+  }
+
+  /* Styling untuk container utama */
+  .container-2 {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+  }
+
+  /* Header */
+  h1 {
+    text-align: center;
+    color: #28a745;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  /* Styling untuk bagian gambar hasil deteksi */
+  .hasil-prediksi {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .hasil-prediksi h2 {
+    font-size: 24px;
+    color: #343a40;
+  }
+
+  .hasil-prediksi img {
+    border: 3px solid #28a745;
+    border-radius: 10px;
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+
+  /* Styling untuk informasi deteksi */
+  .detected-info {
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  .detected-info h3 {
+    color: #28a745;
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .detected-info ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .detected-info ul li {
+    font-size: 18px;
+    color: #343a40;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Tombol riwayat deteksi */
+  .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #218838;
+  }
+
+  img {
+    width: 50%;
+  }
+</style>
+
+<div class="container-2">
+  <h1>Hasil Deteksi Penyakit</h1>
+
+  <div class="hasil-prediksi">
+    <h2>Gambar yang Dideteksi</h2>
+    <img
+      src="{{ url_for('static', filename='uploads/' + detected_image.split('/')[-1]) }}"
+      alt="Detected Image"
+    />
+  </div>
+
+  <div class="detected-info">
+    <h3>Hasil Deteksi:</h3>
+    <ul>
+      {% if detected_info and detected_info|length > 0 %}
+      <li>{{ detected_info[0].label }}</li>
+      {% else %}
+      <li>Tidak ada penyakit terdeteksi.</li>
+      {% endif %}
+    </ul>
+    {% if detected_info and detected_info|length > 0 %} {% if
+    detected_info[0].label|lower != 'sehat' %}
+    <div class="learn-more">
+      <h3>Pelajari Lebih Lanjut:</h3>
+      <!-- Tampilkan hanya satu tautan, yaitu berdasarkan item pertama -->
+      <a
+        href="{{ url_for('penyakit', nama_penyakit=detected_info[0].label) }}"
+        class="btn btn-info"
+      >
+        Pelajari lebih lanjut tentang {{ detected_info[0].label }}
+      </a>
+    </div>
+    {% endif %} {% endif %}
+  </div>
+
+  <a href="{{ url_for('history') }}" class="btn btn-primary"
+    >Lihat Riwayat Deteksi</a
+  >
+</div>
+
+{% endblock %}

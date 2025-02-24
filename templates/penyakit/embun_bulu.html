@@ -1,0 +1,215 @@
+{% extends 'layout.html'%}{%block title %} Embun Bulu {% endblock %}{%block
+content%}
+<style>
+  /* Sembunyikan navigasi */
+  .nav-item {
+    display: none;
+  }
+  /* Styling untuk container */
+  .container-penyakit {
+    margin: 30px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+  }
+
+  /* Judul */
+  .container-penyakit h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #4caf50;
+    margin-bottom: 20px;
+  }
+
+  /* Deskripsi paragraf */
+  .container-penyakit p.description {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+  }
+
+  /* Subjudul */
+  .container-penyakit h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  /* Daftar item */
+  .container-penyakit ul {
+    margin-top: 20px;
+    padding-left: 20px;
+  }
+
+  .container-penyakit ul li {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    position: relative;
+  }
+
+  /* Bullet point list custom */
+  .container-penyakit ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-size: 1.3em;
+    top: -3px;
+  }
+
+  /* Responsive design untuk mobile */
+  @media (max-width: 600px) {
+    .container-penyakit {
+      padding: 15px;
+    }
+
+    .container-penyakit h1 {
+      font-size: 2em;
+    }
+
+    .container-penyakit p.description {
+      font-size: 1em;
+    }
+
+    .container-penyakit h3 {
+      font-size: 1.5em;
+    }
+
+    .container-penyakit ul li {
+      font-size: 1em;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+
+  .btn-primary {
+    text-align: center;
+    display: block;
+  }
+</style>
+<br /><br />
+<div class="container-penyakit">
+  <img
+    src="{{ url_for('static' , filename='assets/images/bawang/downy.jpg') }}"
+    alt="Gambar"
+    width="400px"
+    style="display: block; margin: 0 auto; border-radius: 10px"
+  />
+  <br /><br />
+  <h1>Gejala Embun Bulu</h1>
+  <p class="description">
+    Pada daun muda yangS sedang tumbuh, bintik-bintik kekuningan dengan ukuran
+    berbeda muncul di permukaan atas. Seiring g perkembangan penyakit,
+    bintik-bintik ini membesar dan menjadi jelas, dibatasi oleh pembuluh. Bagian
+    tengahnya menjadi sel mati, dengan variasi warna cokelat, dan mungkin
+    dikelilingi oleh lingkaran kuning. Biasanya setelah beberapa malam yang
+    hangat dan lembap berturut- turut, lapisan bulu tebal berwarna putih
+    keabu-abuan muncul di bawah bercak-bercak ini. Jamur ini mengambil unsur
+    hara dari tanaman dan menyebabkan terhambatnya pertumbuhan. Buah dan bagian
+    lain tananman juga dapat terpengaruh. Kerontokan daun dan kekerdilan atau
+    kematian tunas muda, bunga atau buah menyebabkan pertumbuhan yang terhambat
+    dan hasil panen yang sedikit. Berlawanan portunbg apisdn ini muncul hanya
+    pada sisi bawah daun don dibatasi oleh pembuluh utama. Selain itu, lapisan
+    ini tidak mudah dihilangkan.
+  </p>
+  <br />
+
+  <h3>Rekomendasi</h3>
+  <h3>Pengendalian hayati</h3>
+  <p>
+    Tersedia perlakuan hayati komersial untuk mengatasi embun bulu. Dalam ko
+    lebih baik untuk tidak melakukan apapun dan menunggu hingga cuaca membaik.
+    Dalam beberapa kasus, fungisida pra-infeksi organik dapat membantu
+    menghindari kontaminasi pada tanaman. Ini termasuk fungisida berbasis
+    tembaga, seperti campuran Bordeaux.
+  </p>
+
+  <h3>Pengendalian kimiawi</h3>
+  <p>
+    Selalu pertimbangkan pendekatan terpadu berupa tindakan pencegahan bersama
+    dengan perlakuan hayati jika tersedia. Fungisida pelindung dapat membantu
+    mencegah kontaminasi pada tanaman namun harus disemprotkan dengan tepat di
+    sisi bawah daun. Fungisida dari keluarga ditiokarbamat dapat digunakan.
+    fungisida pasca-infeksi harus diaplikasikan segera setelah gejala pertama
+    terdeteksi. Fungisida pasca-infeksi yang umumnya digunakan termasuk
+    alumunium fosetil, azoksistrobin dan fenilamid.
+  </p>
+
+  <h3>Apa penyebabnya?</h3>
+  <p>
+    Gejala-gejala ini disebabkan oleh jamur dari kelompok Penosporalesa dan
+    dapat sangat merusak di area teduh dengan curah hujan yang tinggi dan suhu
+    hangat (15-23°c). Jamur ini telah beradaptasi dengan baik pada inangnya,
+    yang berarti setiap tanaman utama menampung spesies janmurnya sendiri. Jamur
+    ini melewati musim dingin dalam sisa atau tunas tanaman yang terinfeksi,
+    dalam tanah atau inang alternatif (tanaman dan gulma). Angin dan percikan
+    hujan menyebarkan spora dalam kondisi yang mendukung. Spora berkecambah dan
+    membuat struktur yang memasuki daun melalui pori-pori alami bagian bawah
+    daun. Di sana ia menyebar melalui jaringan, akhirnya tumbuh melampaui
+    jaringan internal dan membentuk lapisan jamur di luar jaringan.
+  </p>
+
+  <h3>Tindakan Pencegahan</h3>
+  <ul>
+    <li>Pilih varietas yang tahan penyakit jika tersedia.</li>
+    <li>
+      Jaga tanaman tetap kering, contohnya melalui peredaran udara yang baik.
+    </li>
+    <li>Pastikan tanah terdrainase dengan baik.</li>
+    <li>Pastikan pemupukan seimbang agar tanaman kokoh.</li>
+    <li>Berikan jarak antara tanaman.</li>
+    <li>
+      Tanam di lahan yang cukup terkena sinar matahari dan pilih arah yang
+      tepat.
+    </li>
+    <li>Kendalikan gulma di dalam dan sekitar lahan.</li>
+    <li>Buang sisa-sisa tanaman dari lahan.</li>
+    <li>Jaga kebersihan alat dan perlengkapan.</li>
+    <li>Hindari penyebaran tanah dan bahan tanaman yang terinfeksi.</li>
+    <li>
+      Bahan penguat dapat diaplikasikan untuk memperkuat kesehatan tanaman.
+    </li>
+  </ul>
+  <h3>Rekomendasi Obat</h3>
+  <p>
+    Beberapa obat yang dapat digunakan untuk pengendalian penyakit karat pada
+    bawang merah antara lain:
+  </p>
+  <ul>
+    <li>
+      <strong>Produk bisa dibeli di :</strong><br />
+      <a
+        href="https://www.lazada.co.id/products/pupuk-hayati-cair-bawang-putih-terbaik-1-l-floraone-pengendali-penyakit-downy-mildew-untuk-bawang-merah-kerdil-i7156610663.html
+        "
+        target="_blank"
+      >
+        <img
+          src="{{ url_for('static', filename='logo-apk/lazada.png') }}"
+          alt="Shopee"
+          style="width: 35px; height: 30px"
+        />
+      </a>
+    </li>
+  </ul>
+  <p>
+    Selalu ikuti petunjuk aplikasi dari masing-masing produk dan pertimbangkan
+    penggunaan pestisida dengan bijaksana untuk menjaga keberlanjutan ekosistem
+    pertanian Anda.
+  </p>
+  <a
+    href="{{ url_for('history') }}"
+    class="btn btn-primary"
+    style="text-align: center"
+    >Kembali Riwayat Deteksi</a
+  >
+</div>
+{% endblock %}

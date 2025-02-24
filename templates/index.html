@@ -1,0 +1,228 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Menggunakan media query untuk layar kecil */
+    @media (max-width: 768px) {
+        .carousel-caption h1 {
+            font-size: 1.5rem; /* Ubah ukuran teks agar lebih kecil di layar kecil */
+        }
+
+        .instruction-card img {
+            max-width: 80px; /* Mengatur ukuran gambar agar lebih kecil di layar kecil */
+        }
+
+        .instruction-card h3 {
+            font-size: 1.2rem; /* Ubah ukuran heading di layar kecil */
+        }
+    }
+
+    .instructions-section {
+        background-color: #f9f9f9;
+    }
+
+    .instruction-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .instruction-card img {
+        max-width: 100px;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .instruction-card h3 {
+        margin-top: 20px;
+        font-size: 1.5rem;
+    }
+
+    .instruction-card p {
+        flex-grow: 1;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col-lg-4, .col-md-6, .col-sm-12 {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .featured-block-image {
+        max-width: 80px;
+        height: auto;
+    }
+
+    .featured-block-text {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* Menghindari overflow dan scroll horizontal */
+    body, html {
+        overflow-x: hidden;
+    }
+
+    .carousel {
+        max-width: 100%;
+    }
+</style>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero-section hero-section-full-height">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-12 p-0">
+                    <div id="hero-slide" class="carousel carousel-fade slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{{ url_for('static', filename='assets/images/bawang/Sehat.jpg') }}" class="carousel-image img-fluid" alt="Bawang Merah Sehat">
+                                <div class="carousel-caption d-flex flex-column justify-content-end">
+                                    <h1>Bawang Merah Sehat</h1>
+                                </div>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{{ url_for('static', filename='assets/images/bawang/Busdan.jpg') }}" class="carousel-image img-fluid" alt="Penyakit Bawang Merah">
+                                <div class="carousel-caption d-flex flex-column justify-content-end">
+                                    <h1>Penyakit Bawang Merah</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#hero-slide" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#hero-slide" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features-section text-center py-5"></section>
+        <div class="container">
+            <h1 class="display-4 text-center">Selamat Datang di Aplikasi Savon</h1>
+            <p class="text-center">Dengan Savon, Anda dapat dengan mudah mendeteksi penyakit pada tanaman bawang sebelum terlambat. Gunakan teknologi canggih kami untuk membantu meningkatkan hasil panen Anda.</p>
+            <p class="text-center">Unggah foto tanaman bawang yang bermasalah, dapatkan diagnosis cepat, dan temukan solusi terbaik untuk menjaga tanaman tetap sehat.</p>
+        </div>
+    </section>
+
+    <!-- Section Fitur Aplikasi (Ajakan Fitur) -->
+    <section class="features-section text-center py-5  main-dp">
+        <div class="container">
+            <br><br>
+            <h2 class="mb-4">Fitur Unggulan Aplikasi Savon</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="instruction-card">
+                        <img src="{{ url_for('static', filename='assets/images/icons/detection5.png') }}" class="img-fluid" alt="Deteksi Penyakit">
+                        <h3 class="mt-3">Deteksi Penyakit</h3>
+                        <p>Unggah foto dan dapatkan prediksi otomatis mengenai penyakit yang menyerang tanaman bawang Anda.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="instruction-card">
+                        <img src="{{ url_for('static', filename='assets/images/icons/history.png') }}" class="img-fluid" alt="Riwayat Prediksi">
+                        <h3 class="mt-3">Riwayat Prediksi</h3>
+                        <p>Pantau dan akses riwayat prediksi penyakit dari tanaman Anda sebelumnya dengan mudah.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="instruction-card">
+                        <img src="{{ url_for('static', filename='assets/images/icons/info2.png') }}" class="img-fluid" alt="Informasi Penyakit">
+                        <h3 class="mt-3">Informasi Penyakit</h3>
+                        <p>Pelajari lebih lanjut tentang penyakit tanaman, termasuk gejala, penyebab, dan cara mengatasinya.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    {% if session['name'] %}
+
+    <!-- Instructions Section -->
+    <section class="instructions-section section-padding" id="section_3">
+        <div class="container text-center">
+            <h2 class="mb-4">Petunjuk Penggunaan Aplikasi</h2>
+            <p class="lead">Ikuti langkah-langkah berikut untuk memanfaatkan aplikasi deteksi penyakit tanaman bawang dengan maksimal:</p>
+            
+            <div class="row mt-4">
+                <div class="col-lg-3 col-md-6 col-12 mb-4">
+                    <div class="instruction-card">
+                        <img src="{{ url_for('static', filename='assets/images/icons/icon_bawang2.png') }}" class="img-fluid" alt="Ikon Baru">
+                        <h3 class="mt-3">1. Deteksi Penyakit</h3>
+                        <p>Deskripsi langkah baru terkait aplikasi deteksi penyakit tanaman bawang.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12 mb-4">
+                    <div class="instruction-card">
+                        <img src="{{ url_for('static', filename='assets/images/icons/upload.png') }}" class="img-fluid" alt="Unggah Foto">
+                        <h3 class="mt-3">2. Unggah Foto Tanaman</h3>
+                        <p>Ambil foto tanaman bawang yang terlihat bermasalah dan unggah ke aplikasi. Pastikan foto jelas dan fokus pada bagian yang dicurigai.</p>
+                    </div>
+                </div>
+            
+                <div class="col-lg-3 col-md-6 col-12 mb-4">
+                    <div class="instruction-card">
+                        <img src="{{ url_for('static', filename='assets/images/icons/detection.png') }}" class="img-fluid" alt="Deteksi Penyakit">
+                        <h3 class="mt-3">3. Prediksi Penyakit</h3>
+                        <p>Aplikasi akan menganalisis foto dan memberikan prediksi tentang penyakit yang mungkin menyerang tanaman bawang Anda.</p>
+                    </div>
+                </div>
+            
+                <div class="col-lg-3 col-md-6 col-12 mb-4">
+                    <div class="instruction-card">
+                        <img src="{{ url_for('static', filename='assets/images/icons/detail.png') }}" class="img-fluid" alt="Pelajari Lebih Lanjut">
+                        <h3 class="mt-3">4. Pelajari Lebih Lanjut</h3>
+                        <p>Setelah mendapatkan hasil prediksi, pelajari lebih lanjut tentang penyakit tersebut, gejala, penyebab, dan cara penanganannya.</p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </section>
+    
+    <section class="contact-section section-padding" id="section_6">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2>Fitur Aplikasi</h2>
+                <p>Manfaatkan fitur aplikasi untuk deteksi penyakit tanaman bawang dan pantau riwayat prediksi Anda.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8 col-sm-10 col-12 mb-4">
+                    <div class="featured-block d-flex justify-content-center align-items-center border p-4" style="border-radius: 10px;">
+                        <a href="deteksi" class="d-block text-center">
+                            <img src="{{ url_for('static', filename='assets/images/icons/icon_bawang2.png') }}" class="featured-block-image img-fluid mb-3" alt="Deteksi Penyakit">
+                            <p class="featured-block-text">Deteksi <strong>Penyakit</strong></p>
+                        </a>
+                    </div>
+                </div>
+                <!-- Additional features can be added here -->
+            </div>
+        </div>
+    </section>
+    
+    {% endif %}
+    
+</main>
+{% endblock %}

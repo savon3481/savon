@@ -1,0 +1,211 @@
+{% extends 'layout.html'%}{%block title %} Hawar Daun Xanthomonas {% endblock
+%}{%block content%}
+<style>
+  /* Sembunyikan navigasi */
+  .nav-item {
+    display: none;
+  }
+  /* Styling untuk container */
+  .container-penyakit {
+    margin: 30px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+  }
+
+  /* Judul */
+  .container-penyakit h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #4caf50;
+    margin-bottom: 20px;
+  }
+
+  /* Deskripsi paragraf */
+  .container-penyakit p.description {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+  }
+
+  /* Subjudul */
+  .container-penyakit h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  /* Daftar item */
+  .container-penyakit ul {
+    margin-top: 20px;
+    padding-left: 20px;
+  }
+
+  .container-penyakit ul li {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    position: relative;
+  }
+
+  /* Bullet point list custom */
+  .container-penyakit ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-size: 1.3em;
+    top: -3px;
+  }
+
+  /* Responsive design untuk mobile */
+  @media (max-width: 600px) {
+    .container-penyakit {
+      padding: 15px;
+    }
+
+    .container-penyakit h1 {
+      font-size: 2em;
+    }
+
+    .container-penyakit p.description {
+      font-size: 1em;
+    }
+
+    .container-penyakit h3 {
+      font-size: 1.5em;
+    }
+
+    .container-penyakit ul li {
+      font-size: 1em;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+
+  .btn-primary {
+    text-align: center;
+    display: block;
+  }
+</style>
+<br /><br />
+<div class="container-penyakit">
+  <img
+    src="{{ url_for('static' , filename='assets/images/bawang/xanthomonas.jpg') }}"
+    alt="Gambar"
+    width="400px"
+    style="display: block; margin: 0 auto; border-radius: 10px"
+  />
+  <br /><br />
+  <h1>Gejala Hawar Daun Xanthomonas</h1>
+  <p class="description">
+    Gejala awal biasanya berupa bercak kecil berwarna putih atau hijau pucat
+    pada daun, yang kemudian berkembang menjadi bercak cokelat atau hitam.
+    Bercak ini membentuk lesi memanjang dengan tepi kekuningan, dan akhirnya
+    menyebabkan kematian jaringan (nekrosis). Daun yang terinfeksi menguning,
+    mengeriting, dan tampak layu. Dalam kondisi parah, daun bisa mati, sehingga
+    mengganggu pertumbuhan tanaman secara keseluruhan.
+  </p>
+  <br />
+
+  <h3>Rekomendasi</h3>
+  <h3>Pengendalian hayati</h3>
+  <p>
+    mencakup penggunaan agen pengendali hayati seperti Pseudomonas fluorescens
+    atau Bacillus subtilis, yang bersifat antagonistik terhadap bakteri penyebab
+    penyakit. Selain itu, memilih varietas bawang merah yang tahan penyakit dan
+    melakukan rotasi tanaman dengan jenis lain yang tidak rentan juga bisa
+    menjadi strategi efektif.
+  </p>
+
+  <h3>Pengendalian kimiawi</h3>
+  <p>
+    dilakukan dengan penyemprotan bakterisida berbasis tembaga, seperti tembaga
+    hidroksida atau tembaga oksiklorida. Beberapa antibiotik tanaman, seperti
+    streptomisin atau oksitetrasiklin, kadang-kadang digunakan, tetapi perlu
+    hati-hati karena risiko resistensi bakteri. Membersihkan dan mendisinfeksi
+    alat pertanian juga penting untuk mencegah penyebaran patogen.
+  </p>
+
+  <h3>Apa penyebabnya?</h3>
+  <p>
+    Penyakit ini disebabkan oleh bakteri Xanthomonas axonopodis pv. allii yang
+    menyebar melalui percikan air hujan, angin, alat pertanian yang
+    terkontaminasi, serta kontak antar tanaman. Kondisi yang mendukung
+    perkembangan penyakit ini adalah cuaca hangat dengan kelembapan tinggi,
+    terutama pada suhu 25–30°C. Infeksi lebih mudah terjadi pada tanaman yang
+    mengalami luka, baik akibat kerusakan mekanis maupun serangan serangga.
+  </p>
+
+  <h3>Tindakan Pencegahan</h3>
+  <ul>
+    <li>
+      Menghindari penyiraman dengan cara overhead yang dapat meningkatkan
+      kelembapan daun.
+    </li>
+    <li>
+      Menerapkan sanitasi lahan dengan membuang sisa-sisa tanaman yang
+      terinfeksi setelah panen.
+    </li>
+    <li>
+      Menjaga jarak tanam yang cukup untuk meningkatkan sirkulasi udara di
+      antara tanaman, sehingga mencegah kelembapan yang berlebihan.
+    </li>
+    <li>
+      Menanam di musim kering atau pada kondisi yang tidak mendukung
+      perkembangan bakteri.
+    </li>
+  </ul>
+  <h3>Rekomendasi Obat</h3>
+  <p>
+    Beberapa obat yang dapat digunakan untuk pengendalian penyakit karat pada
+    bawang merah antara lain:
+  </p>
+  <ul>
+    <li>
+      <strong>Produk bisa dibeli di :</strong><br />
+      <a
+        href="https://shopee.co.id/Sagri-Nil-77WP-500gr-Fungisida-Kontak-Klorotalonil-77-Untuk-Penyakit-Bercak-Hawar-Daun-Satya-Agro-Indonesia-(SAI)-Daconil-i.30371938.23343511518?sp_atk=a7562973-4f52-4eda-8260-67abcab44080&xptdk=a7562973-4f52-4eda-8260-67abcab44080
+        "
+        target="_blank"
+      >
+        <img
+          src="{{ url_for('static', filename='logo-apk/shopee.png') }}"
+          alt="Shopee"
+          style="width: 30px; height: 30px"
+        />
+      </a>
+      &nbsp;&nbsp;
+      <!-- <a
+        href="https://www.tokopedia.com/search?st=product&q=Chlorothalonil"
+        target="_blank"
+      >
+        <img
+          src="{{ url_for('static', filename='logo-apk/tokped.png') }}"
+          alt="Tokopedia"
+          style="width: 30px; height: 30px"
+        />
+      </a> -->
+    </li>
+  </ul>
+  <p>
+    Selalu ikuti petunjuk aplikasi dari masing-masing produk dan pertimbangkan
+    penggunaan pestisida dengan bijaksana untuk menjaga keberlanjutan ekosistem
+    pertanian Anda.
+  </p>
+  <a
+    href="{{ url_for('history') }}"
+    class="btn btn-primary"
+    style="text-align: center"
+    >Kembali Riwayat Deteksi</a
+  >
+</div>
+{% endblock %}

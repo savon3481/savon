@@ -1,0 +1,246 @@
+{% extends 'layout.html'%}{%block title %} Hawar Daun Botrycs {% endblock
+%}{%block content%}
+<style>
+  /* Sembunyikan navigasi */
+  .nav-item {
+    display: none;
+  }
+  /* Styling untuk container */
+  .container-penyakit {
+    margin: 30px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+  }
+
+  /* Judul */
+  .container-penyakit h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #4caf50;
+    margin-bottom: 20px;
+  }
+
+  /* Deskripsi paragraf */
+  .container-penyakit p.description {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+  }
+
+  /* Subjudul */
+  .container-penyakit h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  /* Daftar item */
+  .container-penyakit ul {
+    margin-top: 20px;
+    padding-left: 20px;
+  }
+
+  .container-penyakit ul li {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    position: relative;
+  }
+
+  /* Bullet point list custom */
+  .container-penyakit ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-size: 1.3em;
+    top: -3px;
+  }
+
+  /* Responsive design untuk mobile */
+  @media (max-width: 600px) {
+    .container-penyakit {
+      padding: 15px;
+    }
+
+    .container-penyakit h1 {
+      font-size: 2em;
+    }
+
+    .container-penyakit p.description {
+      font-size: 1em;
+    }
+
+    .container-penyakit h3 {
+      font-size: 1.5em;
+    }
+
+    .container-penyakit ul li {
+      font-size: 1em;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+  .btn-primary {
+    text-align: center;
+    display: block;
+  }
+</style>
+<br /><br />
+<div class="container-penyakit">
+  <img
+    src="{{ url_for('static' , filename='assets/images/bawang/botrytis.jpg') }}"
+    alt="Gambar"
+    width="400px"
+    style="display: block; margin: 0 auto; border-radius: 10px"
+  />
+  <br /><br />
+  <h1>Gejala Hawar Daun Botrycs</h1>
+  <p class="description">
+    Infeksi dapat terjadi pada setiap tahap pertumbuhan dan biasanya berkembang
+    pertama kali pada daun yang lebih tua. Gejala awal muncul sebagai
+    bintik-bintik putih kecil (1-5 mm), bundar atau memanjang pada permukaan
+    atas daun. Bintik-bintik individu dan kelompok-kelompok bintik kemudian
+    dikelilingi oleh lingkaran hijau atau keperakan yang biasanya terlihat
+    berair pada awalnya. Seiring waktu, jumlah lesi meningkat dan pusat
+    bintik-bintik yang lebih tua menjadi cekung dan berwarna jerami, tanda
+    berkembangnya nekrosis. Luka khas yang memanjang dalam lesi dapat muncul
+    pada tahap selanjutnya. Ujung dan tepi daun melunak dan perlahan menjadi
+    nekrotik, menyebabkan hawar daun dan mati pucuk. Dalam kondisi yang
+    menguntungkan, penyakit ini juga memengaruhi umbi, mengurangi ukuran dan
+    kualitasnya. Ketika penyakit ini menyebar lebih jauh, petak kuning besar
+    tanaman yang sekarat dapat diamati dari jarak jauh di lahan.
+  </p>
+  <br />
+
+  <h3>Rekomendasi</h3>
+  <h3>Pengendalian hayati</h3>
+  <p>
+    Tidak ada perlakuan hayati yang tampaknya tersedia saat ini untuk mengobati
+    penyakit ini. Hubungi kami jika Anda mengetahuinya.
+  </p>
+
+  <h3>Pengendalian kimiawi</h3>
+  <p>
+    Selalu pertimbangkan pendekatan terpadu berupa tindakan pencegahan bersama
+    dengan perlakuan hayati, jika tersedia. Praktik budidaya yang baik sangat
+    penting untuk mengurangi risiko infeksi. Jika fungisida diperlukan, produk
+    yang mengandung iprodione, pyrimethanil, fluazinam atau cyprodinil dalam
+    kombinasi dengan fludioxonil memberikan hasil yang sangat baik ketika
+    digunakan sebagai penerapan semprot. Produk lain berdasarkan chlorthalonil
+    dan mancozeb juga berfungsi tetapi kurang efisien. Penerapan fungisida
+    dengan fumigasi tanah bisa lebih efektif daripada metode penyenmprotan
+    udara.
+  </p>
+
+  <h3>Apa penyebabnya?</h3>
+  <p>
+    Penyakit ini disebabkan oleh jamur Botrytis squamosa, yang bertahan hidup
+    pada umbi yang terinfeksi atau sisa-sisa tanaman lain yang tersisa di lahan,
+    atau di fasilitas penyimpanan. Ketika kondisinya menguntungkan, spora jamur
+    diproduksi pada jaringan ini dan disebarkan oleh angin ke tanaman tetangga,
+    yang menjadi sebagai sumber utama infeksi. Suhu antara 10 dan 20 ° C, curah
+    hujan tinggi, periode basah daun yang lama atau kelembaban relatif tinggi
+    mendukung siklus hidup jamur. Untuk menghindari infeksi parah, sangat
+    penting untuk menjaga daun tetap kering. Gejala-gejalanya mungkin mirip
+    dengan penyakit atau kelainan lain seperti stres kekeringan, cedera karena
+    es, serangan thrips atau kerusakan akibat herbisida.
+  </p>
+
+  <h3>Tindakan Pencegahan</h3>
+  <ul>
+    <li>
+      Gunakan benih yang sehat atau bahan tanam dari sumber bersertifikat.
+    </li>
+    <li>Pilih varietas yang matang dengan cepat.</li>
+    <li>
+      Ikuti jarak tanam yang disarankan untuk penanaman baris untuk memastikan
+      ventilasi yang baik.
+    </li>
+    <li>
+      Jangan menanam ladang produksi benih dekat dengan lokasi produksi bawang.
+    </li>
+    <li>
+      Pastikan drainase tanah yang baik dan jangan mengairi secara berlebihan
+    </li>
+    <li>
+      Jangan menggunakan pupuk di akhir musim saat bagian atas tanaman
+      mengering.
+    </li>
+    <li>
+      Periksa tanaman atau lahan Anda secara teratur untuk tanda-tanda penyakit.
+    </li>
+    <li>
+      Singkirkan gulma dan tanaman bawang liar di dalam dan sekitar lahan.
+    </li>
+    <li>
+      Singkirkan tanaman dan bagian tanaman yang terinfeksi dan hancurkan dengan
+      cara membakarnya.
+    </li>
+    <li>
+      Setelah panen, singkirkan tumpukan sisa-sisa tanaman dan potong bagian
+      atas tanaman bawang dan hancurkan dengan cara membakarnya
+    </li>
+    <li>
+      Rotasi tanaman selama 2 tahun dianjurkan untuk menghindari peningkatan
+      risiko infeksi melalui penyakit lain.
+    </li>
+    <li>
+      Jangan mengangkut umbi dari tempat yang terinfeksi ke lahan atau
+      peternakan lain.
+    </li>
+  </ul>
+  <h3>Rekomendasi Obat</h3>
+  <p>
+    Beberapa obat yang dapat digunakan untuk pengendalian penyakit karat pada
+    bawang merah antara lain:
+  </p>
+  <ul>
+    <li>
+      <strong>Produk bisa dibeli di :</strong><br />
+      <a
+        href="https://shopee.co.id/Sagri-Nil-77WP-500gr-Fungisida-Kontak-Klorotalonil-77-Untuk-Penyakit-Bercak-Hawar-Daun-Satya-Agro-Indonesia-(SAI)-Daconil-i.30371938.23343511518?sp_atk=a7562973-4f52-4eda-8260-67abcab44080&xptdk=a7562973-4f52-4eda-8260-67abcab44080
+        "
+        target="_blank"
+      >
+        <img
+          src="{{ url_for('static', filename='logo-apk/shopee.png') }}"
+          alt="Shopee"
+          style="width: 30px; height: 30px"
+        />
+      </a>
+      &nbsp;&nbsp;
+      <!-- <a
+        href="https://www.tokopedia.com/search?st=product&q=Chlorothalonil"
+        target="_blank"
+      >
+        <img
+          src="{{ url_for('static', filename='logo-apk/tokped.png') }}"
+          alt="Tokopedia"
+          style="width: 30px; height: 30px"
+        />
+      </a> -->
+    </li>
+  </ul>
+  <p>
+    Selalu ikuti petunjuk aplikasi dari masing-masing produk dan pertimbangkan
+    penggunaan pestisida dengan bijaksana untuk menjaga keberlanjutan ekosistem
+    pertanian Anda.
+  </p>
+  <a
+    href="{{ url_for('history') }}"
+    class="btn btn-primary"
+    style="text-align: center"
+    >Kembali Riwayat Deteksi</a
+  >
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+<div class="container mt-5">
+  <h2 class="text-center">Diagram Penyakit</h2>
+  <canvas id="penyakitChart" width="400" height="200"></canvas>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Mengambil data penyakit melalui API
+    fetch("/api/penyakit_count_admin")
+      .then((response) => response.json())
+      .then((penyakitData) => {
+        const labels = Object.keys(penyakitData);
+        const values = Object.values(penyakitData);
+
+        const ctx = document.getElementById("penyakitChart").getContext("2d");
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Jumlah Deteksi",
+                data: values,
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 2,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  callback: function (value) {
+                    return value.toFixed(0);
+                  },
+                },
+              },
+            },
+          },
+        });
+      })
+      .catch((error) => console.error("Error fetching penyakit data:", error));
+  });
+</script>

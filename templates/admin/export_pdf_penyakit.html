@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Data Penyakit</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+      h2 {
+        text-align: center;
+        color: #4a90e2;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #4a90e2;
+        color: white;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Data Penyakit Terdeteksi</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Email</th>
+          <th>Penyakit</th>
+          <th>Detected At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in penyakit %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ p.email }}</td>
+          <td>{{ p.penyakit }}</td>
+          <td>{{ p.detected_at }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

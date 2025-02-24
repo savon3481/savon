@@ -1,0 +1,22 @@
+.contact-section {
+  background-color: rgb(226, 255, 230);
+  margin-bottom: -70px;
+}
+
+.main-dp {
+  background-color: rgb(226, 255, 230);
+  margin-bottom: 0px;
+}
+
+.deteksi,
+.img {
+  text-align: center;
+}
+
+.navbar-profile-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid#fff;
+}

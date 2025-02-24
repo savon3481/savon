@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuaca Saat Ini</title>
+    <script>
+        // Fungsi untuk mendapatkan lokasi pengguna dan mengirim ke server
+        function getWeather() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(success, error);
+            } else {
+                document.getElementById('cuaca').innerHTML = "Geolocation tidak didukung oleh browser ini.";
+            }
+        }
+
+        function success(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            // Kirim koordinat ke server
+            fetch('/cuaca', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ lat: lat, lon: lon })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('cuaca').innerHTML = data.error;
+                } else {
+                    // Tampilkan data cuaca di halaman
+                    document.getElementById('cuaca').innerHTML = `
+                        <h3>Cuaca di ${data.city}</h3>
+                        <p>${data.description}</p>
+                        <p>Suhu: ${data.temperature} °C</p>
+                        <p>Kelembapan: ${data.humidity}%</p>
+                        <p>Kecepatan Angin: ${data.wind_speed} m/s</p>
+                        <img src="http://openweathermap.org/img/wn/${data.icon}.png" alt="Icon Cuaca">
+                    `;
+                }
+            })
+            .catch(() => {
+                document.getElementById('cuaca').innerHTML = "Tidak dapat mengambil data cuaca.";
+            });
+        }
+
+        function error() {
+            document.getElementById('cuaca').innerHTML = "Tidak dapat mengakses lokasi Anda.";
+        }
+    </script>
+</head>
+<body onload="getWeather()">
+    <h1>Informasi Cuaca</h1>
+    <div id="cuaca">Memuat cuaca berdasarkan lokasi Anda...</div>
+</body>
+</html>

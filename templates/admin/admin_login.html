@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <link
+      href="{{ url_for('static', filename='assets-login/admin/bootstrap.min.css') }}"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+      }
+
+      h3 {
+        color: #1fbd80; /* Ubah warna teks menjadi biru */
+        font-size: 28px; /* Ukuran font yang lebih besar */
+        font-weight: 600; /* Tebalkan font */
+        margin-bottom: 20px; /* Memberikan jarak bawah */
+      }
+
+      .login-container {
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .login-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .login-header img {
+        width: 60px;
+        margin-bottom: 15px;
+      }
+
+      .login-footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 14px;
+        color: #6c757d;
+      }
+
+      .login-footer a {
+        text-decoration: none;
+        color: #007bff;
+      }
+
+      .login-footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-4 login-container">
+          <!-- pesan flash -->
+          {% with messages = get_flashed_messages(with_categories=true) %} {% if
+          messages %} {% for category, message in messages %}
+          <div class="alert alert-{{ category }}" role="alert">{{message}}</div>
+          {% endfor %} {% endif %} {% endwith %}
+          <!-- end flash -->
+          <div class="login-header">
+            <img
+              src="{{ url_for('static' , filename='assets/images/icon-bawang-fiks.png') }}"
+              alt="Logo"
+            />
+            <h3>Admin Login</h3>
+          </div>
+          <form method="POST" action="{{ url_for('admin_login') }}">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                name="username"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+          </form>
+          <div class="login-footer">
+            <p>&copy; 2025 <a href="#">Dicky Yahya</a>. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

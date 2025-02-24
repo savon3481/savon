@@ -1,0 +1,153 @@
+{% extends 'admin/layout.html'%} {%block title %} Dashboard {% endblock %}
+{%block content%}
+<!-- Main Content -->
+<div class="main-panel2">
+  <div class="content-wrapper">
+    <!-- pesan flash -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="alert alert-{{ category }}" role="alert">{{message}}</div>
+    {% endfor %} {% endif %} {% endwith %}
+    <!-- end flash -->
+    <div class="row">
+      <div class="col-md-6 grid-margin stretch-card">
+        <!-- lokasi default tegal -->
+        <div class="card tale-bg">
+          <div class="card-people mt-auto">
+            <img
+              src="{{ url_for('static', filename='admin_ui/public/aset/images/dashboard/people.svg') }}"
+              alt="people"
+            />
+
+            <div class="weather-info">
+              <div class="d-flex">
+                <div>
+                  <h2 class="mb-0 font-weight-normal">
+                    <i class="icon-sun mr-2"></i>{{ weather['temperature']
+                    }}<sup>°C</sup>
+                  </h2>
+                </div>
+                <div class="ml-2">
+                  <h4 class="location font-weight-normal">
+                    {{ weather['city'] }}
+                  </h4>
+                  <h6 class="font-weight-normal">
+                    {{ weather['description'] }}
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 grid-margin transparent">
+        <div class="row">
+          <div class="col-md-6 mb-4 stretch-card transparent">
+            <div class="card card-tale">
+              <div class="card-body">
+                <p class="mb-4">Total User</p>
+                <p class="fs-30 mb-2">{{ total_users }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4 stretch-card transparent">
+            <div class="card card-dark-blue">
+              <div class="card-body">
+                <p class="mb-4">Total penyakit terdeteksi</p>
+                <p class="fs-30 mb-2">{{total_disease}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+            <div class="card card-light-blue">
+              <div class="card-body">
+                <p class="mb-4">Total Artikel</p>
+                <p class="fs-30 mb-2">{{ total_artikel }}</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 stretch-card transparent">
+            <div class="card card-light-danger">
+              <div class="card-body">
+                <p class="mb-4">Total Video</p>
+                <p class="fs-30 mb-2">{{ total_video }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-title">Jenis Penyakit</p>
+
+            <canvas id="penyakitChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 grid-margin stretch-card"></div>
+    </div>
+  </div>
+  <!-- content-wrapper ends -->
+  <!-- partial:partials/_footer.html -->
+  <footer class="footer">
+    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+      <span
+        class="text-muted text-center text-sm-left d-block d-sm-inline-block"
+        >Copyright © 2025.
+        <a href="https://www.bootstrapdash.com/" target="_blank">Dicky Yahya</a>
+        23092009</span
+      >
+    </div>
+  </footer>
+  <!-- partial -->
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Mengambil data penyakit melalui API
+    fetch("/api/penyakit_count_admin")
+      .then((response) => response.json())
+      .then((penyakitData) => {
+        const labels = Object.keys(penyakitData);
+        const values = Object.values(penyakitData);
+
+        const ctx = document.getElementById("penyakitChart").getContext("2d");
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Jumlah Deteksi",
+                data: values,
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                borderColor: "rgba(75, 192, 192, 1)",
+                borderWidth: 2,
+              },
+            ],
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  callback: function (value) {
+                    return value.toFixed(0);
+                  },
+                },
+              },
+            },
+          },
+        });
+      })
+      .catch((error) => console.error("Error fetching penyakit data:", error));
+  });
+</script>
+
+{% endblock %}

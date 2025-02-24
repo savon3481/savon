@@ -1,0 +1,79 @@
+{% extends 'layout.html'%} {% block title %} Deteksi {% endblock %} {% block
+content %}
+<style>
+  .unggah {
+    position: relative;
+  }
+
+  .unggah img {
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+  }
+
+  .hasil-prediksi {
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    border: 2px solid #28a745;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+  }
+
+  .hasil-prediksi h2 {
+    color: #28a745;
+    font-weight: bold;
+  }
+
+  .hasil-prediksi img {
+    border: 2px solid #28a745;
+    border-radius: 10px;
+  }
+
+  .btn-pelajari {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+</style>
+<div class="container">
+  <br />
+  <h1 class="deteksi text-success">Prediksi Penyakit</h1>
+  <form
+    class="form-horizontal"
+    action="{{ url_for('upload_image') }}"
+    method="post"
+    enctype="multipart/form-data"
+  >
+    <div class="form-group">
+      <h5>Unggah Gambar Penyakit :</h5>
+      <div class="col-sm-10 unggah">
+        <input
+          type="file"
+          class="form-control"
+          name="file"
+          accept=".jpg,.jpeg,.png"
+          id="pwd"
+          required
+        />
+        <!-- <a href="{{ url_for('realtime') }}">
+          <img
+            src="{{ url_for('static' , filename='assets/images/cam.png') }}"
+            alt=""
+          />
+        </a> -->
+      </div>
+    </div>
+    <br /><br /><br /><br />
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-success">Prediksi</button>
+      </div>
+    </div>
+    <br /><br /><br /><br /><br /><br />
+  </form>
+</div>
+{% endblock %}

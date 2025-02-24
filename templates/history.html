@@ -1,0 +1,295 @@
+{% extends 'layout.html' %}
+
+{% block title %}Riwayat Deteksi{% endblock %}
+
+{% block content %}
+
+<!-- Kode untuk menampilkan pesan flash -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="container">
+      {% for category, message in messages %}
+        <div class="alert alert-{{ category }} mt-3">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<style>
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    main {
+        flex-grow: 1;
+    }
+
+    .nav-item
+    {
+        display: none;
+    }
+
+    /* Specific styling for print */
+    @media print {
+        .btn, route, footer, .navbar, h2, #penyakitChart, #penjelasan, #penyakit,#start_date, #end_date, #mr-2, label, form, .pagination, .table th:nth-child(5), .table td:nth-child(5) {
+            display: none !important;
+        }
+        
+        table {
+            width: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+    }
+
+    /* Atur lebar kolom nomor */
+    .table th:nth-child(1), .table td:nth-child(1) {
+        width: 50px; 
+        text-align: center; 
+        vertical-align: middle;
+    }
+
+    .table th:nth-child(2), .table td:nth-child(2) {
+        width: 200px; 
+        text-align: center; 
+        vertical-align: middle;
+    }
+
+    .table th:nth-child(3), .table td:nth-child(3) {
+        width: 200px; 
+        text-align: center; 
+        vertical-align: middle;
+    }
+
+    .table th:nth-child(4), .table td:nth-child(4) {
+        width: 200px; 
+        text-align: center; 
+        vertical-align: middle;
+    }
+
+    .table th:nth-child(5), .table td:nth-child(5) {
+        width: 200px; 
+        text-align: center; 
+        vertical-align: middle;
+    }
+
+    #penjelasan {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 10px;
+    border: 1px solid #cce5ff;
+    border-radius: 5px;
+    background-color: #e9f7fd;
+    color: #31708f;
+}
+/* th{
+    text-align: center;
+} */
+
+</style>
+
+<div class="container mt-4">
+    <h1 class="text-center text-success">Riwayat Deteksi Penyakit</h1>
+
+    <!-- Print Button -->
+    <a href="/history/export/pdf" class="btn btn-sm btn-primary mb-3">
+        <i class="fa-solid fa-file-pdf"></i> Export PDF
+    </a>
+    
+    <!-- Filter Form -->
+    <form method="GET" action="{{ url_for('history') }}" class="form-inline">
+        <div class="row">
+            <!-- Dropdown Penyakit -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <br>
+                    <label for="penyakit" class="mr-2">Filter Penyakit:</label>
+                    <br> <br>              
+                    <select class="form-control" id="penyakit" name="penyakit">
+                        <option value="">Semua</option>
+                        <option value="Hawar Daun Botrytis" {% if penyakit_filter == 'Hawar Daun Botrytis' %}selected{% endif %}>Hawar Daun Botrytis</option>
+                        <option value="Embun Bulu" {% if penyakit_filter == 'Embun Bulu' %}selected{% endif %}>Embun Bulu</option>                        
+                        <option value="Bercak Ungu" {% if penyakit_filter == 'Bercak Ungu' %}selected{% endif %}>Bercak Ungu</option>
+                        <option value="Karat" {% if penyakit_filter == 'Karat' %}selected{% endif %}>Karat</option>
+                        <option value="Hawar Daun Stemphylium " {% if penyakit_filter == 'Hawar Daun Stemphylium ' %}selected{% endif %}>Hawar Daun Stemphylium </option>
+                        <option value="Hawar Daun Xanthomonas" {% if penyakit_filter == 'Hawar Daun Xanthomonas' %}selected{% endif %}>Hawar Daun Xanthomonas</option>
+                    </select>
+                </div>
+            </div>
+    
+            <!-- Tanggal Mulai -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <br>
+                    <label for="start_date" class="mr-2">Tanggal Mulai:</label>
+                    <br><br>
+                    <input type="date" class="form-control" id="start_date" name="start_date" value="{{ start_date_filter }}">
+                </div>
+            </div>
+    
+            <!-- Tanggal Akhir -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <br>
+                    <label for="end_date" class="mr-2">Tanggal Akhir:</label>   
+                    <br><br>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{ end_date_filter }}">
+                </div>
+            </div>
+    
+            <!-- Tombol Filter -->
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </form>
+      
+    {% if history_data %}
+    <div class="table-responsive mt-4">
+        <table class="table table-striped table-bordered mt-4">
+            <thead class="thead-dark">
+                <tr>
+                    <th>No.</th> <!-- Kolom nomor ditambahkan -->
+                    <th>Penyakit</th>
+                    <th>Waktu Deteksi</th>
+                    <th>Gambar Penyakit</th>
+                    <th>Penjelasan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in history_data %}
+                <tr>
+                    <td>{{ (current_page - 1) * per_page + loop.index }}</td>  
+                    <td>{{ row.penyakit }}</td>
+                    <td>{{ row.detected_at.strftime('%d-%m-%Y %H:%M') }}</td>
+                    <td style="text-align: center;">
+                        {% if row.image_path %}
+                        <img src="{{ row.image_path }}" alt="{{ row.penyakit }}" width="100" style="text-align: center;">
+                        {% else %}
+                        Tidak ada gambar
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('penyakit', nama_penyakit=row.penyakit) }}" class="btn btn-success">
+                            Pelajari Lebih Lanjut
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Pagination -->
+{% if total_pages > 1 %}
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        <!-- Tombol Sebelumnya -->
+        <li class="page-item {% if current_page == 1 %}disabled{% endif %}">
+            <a class="page-link" href="{{ url_for('history', page=current_page-1, penyakit=penyakit_filter, start_date=start_date_filter, end_date=end_date_filter) }}">Previous</a>
+        </li>
+
+        <!-- Tombol Halaman -->
+        {% for page_num in range(1, total_pages + 1) %}
+        <li class="page-item {% if page_num == current_page %}active{% endif %}">
+            <a class="page-link" href="{{ url_for('history', page=page_num, penyakit=penyakit_filter, start_date=start_date_filter, end_date=end_date_filter) }}">{{ page_num }}</a>
+        </li>
+        {% endfor %}
+
+        <!-- Tombol Berikutnya -->
+        <li class="page-item {% if current_page == total_pages %}disabled{% endif %}">
+            <a class="page-link" href="{{ url_for('history', page=current_page+1, penyakit=penyakit_filter, start_date=start_date_filter, end_date=end_date_filter) }}">Next</a>
+        </li>
+    </ul>
+</nav>
+{% endif %}
+
+    <div class="container mt-5">
+        <h2 class="text-center">Diagram Penyakit</h2>
+        <canvas id="penyakitChart" width="400" height="200"></canvas>
+    </div>
+
+    <div class="container mt-3">
+        <div id="penjelasan" class="alert alert-info">
+            <!-- Penjelasan tentang penyakit tertinggi dan terendah akan muncul di sini -->
+        </div>
+    </div>
+    
+    
+    {% else %}
+    <p class="no-history text-center text-muted mt-4">Tidak ada riwayat deteksi.</p>
+    {% endif %}
+    
+    <div class="text-center mt-4">
+        <a href="{{ url_for('deteksi') }}" class="btn btn-success d-block mx-auto">Kembali</a>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mengambil data penyakit melalui API
+        fetch('/api/penyakit_count')
+    .then(response => response.json())
+    .then(penyakitData => {
+        const labels = Object.keys(penyakitData);
+        const values = Object.values(penyakitData);
+
+        const maxValue = Math.max(...values);
+        const minValue = Math.min(...values);
+
+        const maxIndex = values.indexOf(maxValue);
+        const minIndex = values.indexOf(minValue);
+
+        const maxLabel = labels[maxIndex];
+        const minLabel = labels[minIndex];
+
+        const explanation = `
+            <p><strong>Penyakit dengan jumlah deteksi tertinggi:</strong> ${maxLabel} (${maxValue} deteksi)</p>
+            <p><strong>Penyakit dengan jumlah deteksi terendah:</strong> ${minLabel} (${minValue} deteksi)</p>
+        `;
+        document.getElementById('penjelasan').innerHTML = explanation;
+
+        const ctx = document.getElementById('penyakitChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Jumlah Deteksi',
+                    data: values,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1,
+                            callback: function(value) {
+                                return value.toFixed(0);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    })
+    .catch(error => console.error('Error fetching penyakit data:', error));
+
+    });
+</script>
+
+
+
+{% endblock %}
+
+

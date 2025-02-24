@@ -1,0 +1,258 @@
+{% extends 'layout.html'%}{%block title %} Karat {% endblock %}{%block content%}
+<style>
+  /* Sembunyikan navigasi */
+  .nav-item {
+    display: none;
+  }
+  /* Styling untuk container */
+  .container-penyakit {
+    margin: 30px auto;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: "Arial", sans-serif;
+  }
+
+  /* Gambar styling */
+  /* .container-penyakit img {
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+  } */
+
+  /* Judul */
+  .container-penyakit h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #4caf50;
+    margin-bottom: 20px;
+  }
+
+  /* Deskripsi paragraf */
+  .container-penyakit p.description {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #333;
+    text-align: justify;
+  }
+
+  /* Subjudul */
+  .container-penyakit h3 {
+    font-size: 1.8em;
+    color: #333;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  /* Daftar item */
+  .container-penyakit ul {
+    margin-top: 20px;
+    padding-left: 20px;
+  }
+
+  .container-penyakit ul li {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    position: relative;
+  }
+
+  /* Bullet point list custom */
+  .container-penyakit ul li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #4caf50;
+    font-size: 1.3em;
+    top: -3px;
+  }
+
+  /* Responsive design untuk mobile */
+  @media (max-width: 600px) {
+    .container-penyakit {
+      padding: 15px;
+    }
+
+    .container-penyakit h1 {
+      font-size: 2em;
+    }
+
+    .container-penyakit p.description {
+      font-size: 1em;
+    }
+
+    .container-penyakit h3 {
+      font-size: 1.5em;
+    }
+
+    .container-penyakit ul li {
+      font-size: 1em;
+    }
+    p {
+      text-align: justify;
+    }
+  }
+
+  .btn-primary {
+    text-align: center;
+    display: block;
+  }
+</style>
+<br /><br />
+<div class="container-penyakit">
+  <img
+    src="{{ url_for('static' , filename='assets/images/bawang/rust.jpg') }}"
+    alt="Gambar"
+    width="400px"
+    style="display: block; margin: 0 auto; border-radius: 10px"
+  />
+  <br /><br />
+  <h1>Gejala Karat</h1>
+  <p class="description">
+    Gejala Infeksi dapat terjadi pada setiap tahap pertumbuhan dan pertama kali
+    terlihat pada daun. Gejala awal muncul sebagai bintik-bintik putih kecil
+    yang dapat ditemukan di kedua sisi helai daun (lamina). Seiring waktu,
+    bintik-bintik ini berkembang menjadi lepuh karat oranye terang yang
+    merupakan struktur penghasil spora. Seiring pustula (bintil) terus tumbuh,
+    mereka membuka untuk melepaskan spora. Daun akhirnya menjadi klorotik dan
+    lesi dapat berkembang sepanjang lamina, kadang-kadang menyebabkan bukaan
+    seperti celah. Dalam kasus infeksi berat seluruh tanaman menguning dan layu,
+    yang dapat menyebabkan kematian dini tanaman. Jika tanaman terpengaruh sejak
+    dini, atau jika infeksi berat terjadi, umbi kecil dan layu dengan kualitas
+    rendah akan dihasilkan.
+  </p>
+  <br />
+
+  <h3>Rekomendasi</h3>
+  <h3>Pengendalian hayati</h3>
+  <p>
+    Pencegahan adalah satu-satunya cara untuk mengatasi penyakit karat dalam
+    jangka panjang. Beberapa formulasi yang mengandung belerang dianggap organik
+    dan dapat digunakan sebagai cara pencegahan untuk menurunkan risiko infeksi.
+    Ada berbagai cara perlakuan, misalnya bubuk belerang dapat ditaburkan atau
+    disebarkan pada tanaman. Atau belerang dicanmpur dengan air dapat digunakan
+    sebagai semprotan daun atau dituangkan ke tanah di sekitar pangkal tanaman.
+    Untuk aplikasi yang tepat, silakan ikuti manual produk yang sesuai atau
+    tanyakan pedagang lokal Anda.
+  </p>
+
+  <h3>Pengendalian kimiawi</h3>
+  <p>
+    Selalu pertimbangkan pendekatan terpadu berupa tindakan pencegahan bersama
+    dengan perlakuan hayati, jika tersedia. Produk yang mengandung azoxystrobin
+    atau mancozeb dapat digunakan sebagai semprotan daun preventif atau
+    perlakuan tanah untuk mencegah risiko infeksi. Perlu diketahui bahwa tidak
+    mungkin untuk menyembuhkan penyakit jamur ini.
+  </p>
+
+  <h3>Apa penyebabnya?</h3>
+  <p>
+    Penyakit ini disebabkan oleh jamur Puccinia porri, yang hanya dapat bertahan
+    hidup pada jaringan tanaman hidup. Jamur ini harus melewati musim dingin
+    pada inang alternatif (gulma atau tanaman liar), atau menghasilkan spora
+    untuk melewati musim yang tidak aktif. Spora jamur ini diangkut oleh angin
+    dan percikan hujan ke tanaman atau lahan lain. Kelembaban tinggi, curah
+    hujan rendah dan suhu dari 10-20 ° C adalah kondisi yang paling
+    menguntungkan untuk siklus hidup jamur dan penyebaran penyakit. Dalam
+    kondisi ini, setelah spora jamur mendarat di tanaman inang, pertumbuhan dan
+    kolonisasi jamur dimulai. Rentang waktu antara infeksi dan wabah penyakit
+    adalah antara 10-15 hari, tergantung pada suhu dan tingkat kelembaban. Waktu
+    utama untuk penyebaran adalah akhir musim panas. Penyakit ini dapat
+    menyebabkan kehilangan hasil panen berat dan dapat menurunkan kapasitas
+    penyimpanan umbi.
+  </p>
+
+  <h3>Tindakan Pencegahan</h3>
+  <ul>
+    <li>Gunakan benih sehat atau bahan tanam dari sumber bersertifikat.</li>
+    <li>
+      Ikuti jarak tanam yang direkomendasikan untuk penanaman baris untuk
+      memastikan ventilasi yang baik dan menghindari penyebaran penyakit.
+    </li>
+    <li>
+      Pilih lokasi penanaman yang dikeringkan dengan baik, pastikan drainase
+      lahan yang baik dan hindari penyiraman berlebihan.
+    </li>
+    <li>
+      Pastikan penanganan yang hati-hati saat menyiangi untuk menghindari
+      kerusakan umbi.
+    </li>
+    <li>
+      Jangan menanam tanaman dari keluarga allium di tanah yang kaya nitrogen.
+    </li>
+    <li>Gunakan pupuk yang kaya kalium (misainya kalium sulfat).</li>
+    <li>
+      Penyiraman di pagi hari dianjurkan untuk menghindari kondisi lembab di
+      malam hari.
+    </li>
+    <li>
+      Periksa tanaman atau lahan Anda secara teratur untuk mendeteksi tanda
+      penyakit.
+    </li>
+    <li>
+      Singkirkan tanaman yang terinfeksi begitu gejala awal terlihat dan
+      hancurkan dengan membakarnya.
+    </li>
+    <li>
+      Rencanakan rotasi tanaman dengan tanaman bukan inang setidaknya selama 2-3
+      tahun.
+    </li>
+    <li>
+      Hancurkan tanaman allium liar untuk memastikan lokasi penanaman bebas
+      patogen.
+    </li>
+    <li>
+      Desinfektan peralatan dan perlengkapan Anda dan cuci tangan Anda sesering
+      mungkin agar tidak menularkan penyakit di antara lahan.
+    </li>
+  </ul>
+
+  <h3>Rekomendasi Obat</h3>
+  <p>
+    Beberapa obat yang dapat digunakan untuk pengendalian penyakit karat pada
+    bawang merah antara lain:
+  </p>
+  <ul>
+    <li>
+      <strong>Produk bisa dibeli secara online di :</strong><br />
+      <a
+        href="https://shopee.co.id/Mahakam-Mantazeb-80-WP-500-GR-Pestisida-Fungisida-Pengendali-Penyakit-Hawar-Daun-Tanaman-Kentang-i.348148492.8122419309?sp_atk=a38aa6a0-df5a-476f-92fc-804579af29f5&xptdk=a38aa6a0-df5a-476f-92fc-804579af29f5
+        "
+        target="_blank"
+      >
+        <img
+          src="{{ url_for('static', filename='logo-apk/shopee.png') }}"
+          alt="Shopee"
+          style="width: 30px; height: 30px"
+        />
+      </a>
+      &nbsp;&nbsp;
+      <!-- <a
+        href="https://www.tokopedia.com/search?st=product&q=Chlorothalonil"
+        target="_blank"
+      >
+        <img
+          src="{{ url_for('static', filename='logo-apk/tokped.png') }}"
+          alt="Tokopedia"
+          style="width: 30px; height: 30px"
+        />
+      </a> -->
+    </li>
+  </ul>
+  <p>
+    Selalu ikuti petunjuk aplikasi dari masing-masing produk dan pertimbangkan
+    penggunaan pestisida dengan bijaksana untuk menjaga keberlanjutan ekosistem
+    pertanian Anda.
+  </p>
+  <a
+    href="{{ url_for('history') }}"
+    class="btn btn-primary"
+    style="text-align: center"
+    >Kembali Riwayat Deteksi</a
+  >
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block title %}Real Time{% endblock %}
+
+{% block content %}
+
+<style>
+    /* Sembunyikan elemen navigasi */
+    .nav-item {
+        display: none;
+    }
+
+    /* Styling untuk container utama */
+    .container-2 {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    /* Styling untuk judul halaman */
+    h1 {
+        color: #28a745;
+        font-weight: bold;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    /* Styling untuk video stream */
+    #box-img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        border: 3px solid #28a745;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    /* Styling untuk tombol kembali */
+    a.btn-primary {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: #28a745;
+        color: white;
+        font-size: 18px;
+        text-transform: uppercase;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    a.btn-primary:hover {
+        background-color: #218838;
+    }
+
+    /* Styling untuk halaman di perangkat yang lebih kecil */
+    @media (max-width: 768px) {
+        .container {
+            padding: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        a.btn-primary {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+    }
+</style>
+
+<div class="container-2">
+    <h1>Realtime Object Detection</h1>
+    <img src="{{ url_for('video_feed') }}" id="box-img" alt="Real-Time Video Feed">
+    <br>
+    <a href="{{ url_for('deteksi') }}" class="btn-primary">Kembali ke Halaman Utama</a>
+</div>
+
+{% endblock %}

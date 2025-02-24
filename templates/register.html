@@ -1,0 +1,279 @@
+{% extends 'layout.html'%}{%block title %} Register {% endblock %}{%block
+content%}
+<style>
+  /* Global Style */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  /* Container for the login form */
+  .container-sign {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 8px;
+  }
+
+  .signin-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .signin-image {
+    max-width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .signin-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  .signin-form {
+    max-width: 45%;
+    padding: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #6c63ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* Style for mobile */
+  @media (max-width: 768px) {
+    .signin-content {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .signin-image,
+    .signin-form {
+      max-width: 100%;
+    }
+
+    .signin-form {
+      margin-top: 30px;
+    }
+
+    .signup-image img {
+      width: 100%;
+      height: auto;
+      max-width: 300px;
+      display: none;
+      position: inherit;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .signin-content {
+      padding: 0;
+    }
+
+    .signin-form {
+      padding: 20px 10px;
+      margin-top: 20px;
+    }
+
+    .signup-image img {
+      width: 100%;
+      height: auto;
+      max-width: 300px;
+      display: none;
+      position: inherit;
+    }
+
+    .form-submit {
+      padding: 8px 15px;
+    }
+  }
+  .nav-item {
+    display: none;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Toggle untuk password field
+    const passwordInput = document.getElementById("password");
+    const togglePassword = document.getElementById("toggle-password");
+
+    togglePassword.addEventListener("click", function () {
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        togglePassword.innerHTML = '<i class="zmdi zmdi-eye-off"></i>';
+      } else {
+        passwordInput.type = "password";
+        togglePassword.innerHTML = '<i class="zmdi zmdi-eye"></i>';
+      }
+    });
+
+    // Toggle untuk confirm_password field
+    const confirmPasswordInput = document.getElementById("confirm_password");
+    const toggleConfirmPassword = document.getElementById(
+      "toggle-confirm-password"
+    );
+
+    toggleConfirmPassword.addEventListener("click", function () {
+      if (confirmPasswordInput.type === "password") {
+        confirmPasswordInput.type = "text";
+        toggleConfirmPassword.innerHTML = '<i class="zmdi zmdi-eye-off"></i>';
+      } else {
+        confirmPasswordInput.type = "password";
+        toggleConfirmPassword.innerHTML = '<i class="zmdi zmdi-eye"></i>';
+      }
+    });
+  });
+</script>
+
+<div class="main">
+  <!-- Sing in  Form -->
+  <section class="signup">
+    <div class="container-sign">
+      <div class="signup-content">
+        <div class="signup-form">
+          <h2 class="form-title">Sign Up</h2>
+          <form method="POST" class="register-form" id="register-form">
+            {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            <div class="form-group">
+              <label for="name"
+                ><i class="zmdi zmdi-account material-icons-name"></i
+              ></label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Masukan Nama"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email"><i class="zmdi zmdi-email"></i></label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Masukan Email"
+                required
+              />
+            </div>
+            <div class="form-group" style="position: relative">
+              <label for="password"><i class="zmdi zmdi-lock"></i></label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Masukan Password"
+                required
+              />
+              <span
+                id="toggle-password"
+                style="
+                  cursor: pointer;
+                  position: absolute;
+                  right: 15px;
+                  top: 12px;
+                "
+              >
+                <i class="zmdi zmdi-eye"></i>
+              </span>
+            </div>
+
+            <div class="form-group" style="position: relative">
+              <label for="confirm_password"
+                ><i class="zmdi zmdi-lock-outline"></i
+              ></label>
+              <input
+                type="password"
+                name="confirm_password"
+                id="confirm_password"
+                placeholder="Masukan ulang password"
+                required
+              />
+              <span
+                id="toggle-confirm-password"
+                style="
+                  cursor: pointer;
+                  position: absolute;
+                  right: 15px;
+                  top: 12px;
+                "
+              >
+                <i class="zmdi zmdi-eye"></i>
+              </span>
+            </div>
+
+            <div
+              class="g-recaptcha"
+              data-sitekey="6Lfpqa4qAAAAAHwG7X-JCfAf-lB0tgAMnafLl_1O"
+            ></div>
+
+            <div class="form-group">
+              <input
+                type="checkbox"
+                name="agree-term"
+                id="agree-term"
+                class="agree-term"
+              />
+            </div>
+
+            <div class="form-group form-button">
+              <input
+                type="submit"
+                name="signup"
+                id="signup"
+                class="form-submit"
+                value="Daftar"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="signup-image">
+          <figure>
+            <img
+              src="{{ url_for('static' , filename='assets-login/images/signup-image.jpg') }}"
+              alt="sing up image"
+            />
+          </figure>
+          <a href="/login" class="signup-image-link">Sudah punya akun?</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}
